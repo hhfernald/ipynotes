@@ -2,6 +2,8 @@
 
 **IPyNotes** is a note organizer that I'm building in my spare time. It's a GUI application written in Python using Tkinter, and it's been tested on Linux and Windows (but not on OS X).
 
+![Main window](screenshots/main_window.png)
+
 Currently it has no installer, so you'd download the archive file, extract its contents, navigate to the IPyNotes folder, and run `ipynotes.py`. From the shell in Linux, you can do this:
 
     git clone https://github.com/hhfernald/ipynotes.git
