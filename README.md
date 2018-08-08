@@ -1,5 +1,7 @@
 # IPyNotes
 
+*Current version: v0.1.0.*
+
 **IPyNotes** is a note organizer that I'm building in my spare time. It's a GUI application written in Python using Tkinter, and it's been tested on Linux and Windows (but not on OS X).
 
 ![Main window](screenshots/main_window.png)
