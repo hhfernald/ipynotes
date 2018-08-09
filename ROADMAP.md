@@ -10,14 +10,6 @@ The Settings class does not yet use configparser to load and save settings in a 
 
 
 
-### Subsets
-
-When you enter text into the filter bar, the notes listed in the listbox are a **subset** of all of your notes. In the future, IPyNotes will support pulling filter-bar strings from a file when you press a key, so that you don't have to activate the filter bar and type in the strings from memory.
-
-- Ctrl-L and Ctrl-; (semicolon) load the next and previous subset (filter string) respectively.
-
-
-
 ### Editor enhancements
 
 - If you hit Ctrl-Enter within the editor, this should split the current note. Text before the insertion point (or before the selected text) would remain in the current note; the rest of the text would go into a new note (and the path bar would have the focus, so you can edit the name of the new note).
