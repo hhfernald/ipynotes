@@ -53,6 +53,8 @@ class App(ttk.Frame):
             '<<CreateNote>>':          self.create_note,
             '<<NextNote>>':            self.next_note,
             '<<PreviousNote>>':        self.prev_note,
+            '<<NextSubset>>':          self.next_subset,
+            '<<PreviousSubset>>':      self.prev_subset,
             '<<DeleteNote>>':          self.delete_note,
             '<<RefreshList>>':         self.refresh_list,
             '<<Saved>>':               self.show_saved,
@@ -122,9 +124,6 @@ class App(ttk.Frame):
         listbox = self.window.listbox
         index = listbox.find_item(old_name) + 1
         listbox.sort(new_name)
-        #listbox.insert(index, new_name)
-        #listbox.select_index(index)
-        #listbox.stripe_all()
         self.window.path_entry.focus_set()
         self.show_note_count()
 
@@ -143,6 +142,18 @@ class App(ttk.Frame):
         self.save_if_needed()
         self.reselect_note()
         self.window.listbox.select_prev()
+
+    def next_subset(self, event=None):
+        self.save_if_needed()
+        name = self.window.filter_entry.get()
+        name = self.note_store.next_subset(name)
+        self.window.filter_entry.set_text(name)
+
+    def prev_subset(self, event=None):
+        self.save_if_needed()
+        name = self.window.filter_entry.get()
+        name = self.note_store.prev_subset(name)
+        self.window.filter_entry.set_text(name)
 
     def delete_note(self, event=None):
         # Save changes anyway, just so the otherwise unsaved changes will be
