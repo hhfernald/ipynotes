@@ -1,0 +1,2 @@
+# IPyNotes package
+
