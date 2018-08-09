@@ -263,7 +263,29 @@ class NoteStore:
             except OSError:
                 return
             path = os.path.dirname(path)
-
+    
+    def _remove_subset_prefix(self, name):
+        prefix = 's:'
+        if name.startswith(prefix):
+            name = name[len(prefix):]
+        name = name.strip()
+        return name
+    
+    def _add_subset_prefix(self, name):
+        if name:
+            return 's:' + name
+        return ""
+    
+    def next_subset(self, name):
+        name = self._remove_subset_prefix(name)
+        name = self._finder.next_subset(name)
+        return self._add_subset_prefix(name)
+    
+    def prev_subset(self, name):
+        name = self._remove_subset_prefix(name)
+        name = self._finder.prev_subset(name)
+        return self._add_subset_prefix(name)
+    
     def get_matches(self, term_string=""):
         if not len(self._names):
             self.refresh_name_cache()
