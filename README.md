@@ -1,6 +1,6 @@
 # IPyNotes
 
-*Current version: v0.1.0.*
+*Current version: v0.1.1.*
 
 **IPyNotes** is a note organizer that I'm building in my spare time. It's a GUI application written in Python using Tkinter, and it's been tested on Linux and Windows (but not on OS X).
 
@@ -13,7 +13,7 @@ Currently it has no installer, so you'd download the archive file, extract its c
     chmod +x ./ipynotes.py
     ./ipynotes.py
 
-**2018-08-08:** This is a very early (alpha) release, with many features missing, such as proper undo, popup menus, syntax highlighting, setting of options, and other things I want to add. If you try this program out, expect bugs and make backups.
+**2018-08-09:** This is a very early (alpha) release, with many features missing, such as proper undo, popup menus, syntax highlighting, setting of options, and other things I want to add. If you try this program out, expect bugs and make backups.
 
 
 ## Overview
@@ -26,7 +26,7 @@ The main window has two panes. The left pane contains the filter bar along the t
 
 The main window shows the notes, not with a tree widget, but with a plain listbox, as a relative path to the note, without the `.md` extension. So `~/IPyNotes/notes/coding/my editor.md` would appear in the list as `coding/my editor` (or as `coding\my editor` on Windows).
 
-You use the filter bar to limit the notes displayed in the listbox. If you type `food lost "any kind"` into the filter bar, then the listbox displays only notes whose relative paths include all three of the terms "food", "lost", and "any kind" (in any order).
+You use the filter bar to limit the notes displayed in the listbox. If you type `food lost "any kind"` into the filter bar, then the listbox displays only notes whose relative paths include all three of the terms "food", "lost", and "any kind" (in any order). IPyNotes can also read filter strings from a file, so that you can cycle among them by pressing Ctrl-L instead of typing into the filter bar.
 
 The path bar above the note editor is used to rename notes. Changing `my/first/note` to `another/name` renames `~/IPyNotes/notes/my/first/note.md` to `~/IPyNotes/notes/another/name.md`.
 
