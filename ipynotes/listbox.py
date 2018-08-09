@@ -9,11 +9,6 @@ NO_ITEM = -1
 
 
 class Listbox(tk.Listbox):
-    # To keep the app from growing sluggish once the number of notes
-    # in your collection grows into the tens of thousands, limit the
-    # number of items that can be added to the listbox.
-    #MAX_SIZE = 4096
-    
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.config(activestyle = tk.NONE)
