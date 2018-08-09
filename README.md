@@ -10,6 +10,7 @@ Currently it has no installer, so you'd download the archive file, extract its c
 
     git clone https://github.com/hhfernald/ipynotes.git
     cd ipynotes
+    chmod +x ./ipynotes.py
     ./ipynotes.py
 
 **2018-08-08:** This is a very early (alpha) release, with many features missing, such as proper undo, popup menus, syntax highlighting, setting of options, and other things I want to add. If you try this program out, expect bugs and make backups.
