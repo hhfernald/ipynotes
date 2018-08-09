@@ -14,7 +14,7 @@ class NoteFinder():
         self._plugin_path = settings.filter_plugin_path()
         
     def split_terms(self, term_string):
-        """Splits the text into a list of terms and returns the list.
+        """Split the text into a list of terms and returns the list.
 
         Each group of words inside double quotes is a single term.
         Each word outside double quotes is a single term.
