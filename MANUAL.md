@@ -139,6 +139,32 @@ When a note is selected and you press Ctrl-N again, the new note will have the s
 *Tip:* Text with capital letters matches case and thus exclude more notes; text with only lowercase letters ignores case differences.
 
 
+### Named subsets
+
+When you enter text into the filter bar, the notes listed in the listbox are a **subset** of all of your notes. You can enter the full text manually, or you can give the full text a short name and enter that instead. Once you have the name, you can enter `s:` followed by the name instead of the full filter text.
+
+Currently, you have to open `subsets.ini` in the `$HOME/IPyNotes/files` directory and add a line to create a subset with a name. Each subset goes on its own line and has this format:
+
+     name = text
+     
+The text can include anything you'd normally type in the filter bar. You can search note names for individual words or phrases; you can search note texts; you can even nest another subset:
+
+     basic = project writing
+     novel = s:basic "stitch in time"
+     notes = s:novel t:Notes
+
+In this example, `s:novel` would match any notes whose names contained the word "project", the word "writing", and the phrase "stitch in time" (all case-insensitive); `s:notes` would match any notes matching `s:novel` whose text also contained the word "Notes" (with a capital 'N').
+
+     name = word "a phrase" t:"in files" s:another_name
+
+#### Cycling among subsets
+
+One nice feature of named subsets is that you don't even have to type in the subset name. You can cycle among the named subsets with the keyboard. Pressing Ctrl-L automatically populates the filter bar with the first subset name. If the filter bar already has one of the named subsets, Ctrl-L moves to the next. If you reach the last subset and press Ctrl-L again, the filter bar is cleared, and you're back to seeing all notes (or the maximum number of notes that IPyNotes will add to the listbox).
+
+Ctrl-Semicolon works in the same way, but it cycles backward.
+
+
+
 ### Keyboard shortcuts
 
 - Alt-1: Filter Bar
