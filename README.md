@@ -39,6 +39,8 @@ You can access each of the four widgets with a keyboard shortcut:
 - Alt-3 moves the focus to the path bar.
 - Alt-4 moves the focus to the text editor.
 
+Whichever widget has the focus will have a thick black border.
+
 To create a new note, press Ctrl-N. The path bar will have the focus, so you can edit the path to the note. Press Enter, and the focus will shift to the editor.
 
 Moving among the notes in the listbox is easy. Ctrl-J displays the next note, and Ctrl-K displays the previous one.
