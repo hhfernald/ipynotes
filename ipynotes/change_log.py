@@ -5,6 +5,7 @@ import glob
 import os
 
 from .settings import Settings
+from .utils import get_file_text
 
 
 class ChangeLog():
@@ -47,11 +48,12 @@ class ChangeLog():
 
     def _grab_file_content(self, lines, file_path):
         try:
-            with open(file_path, encoding='utf-8') as f:
-                lines.append("--- REPLACED TEXT FOLLOWS:\n")
-                for line in f:
-                    lines.append('\t' + line)
-                lines.append('\n')
+            text = get_file_text(file_path)
+            file_lines = text.splitlines()
+            lines.append("--- REPLACED TEXT FOLLOWS:\n")
+            for line in file_lines:
+                lines.append('\t' + line + '\n')
+            lines.append('\n')
         except FileNotFoundError:
             lines.append("--- FILE NOT FOUND: " + file_path + "\n")
 
