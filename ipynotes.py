@@ -4,7 +4,6 @@ import tkinter as tk
 from ipynotes import *
 from ipynotes.app import App
 
-print("#" * 240)
 root = tk.Tk()
 
 # Add icon to application.
