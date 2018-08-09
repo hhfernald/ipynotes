@@ -178,24 +178,26 @@ class AppWindow(ttk.PanedWindow):
         self.master.bind('<Key>', self.on_key)
 
         events = {
-            '<Control-d>': self.req_delete_note,
-            '<Control-j>': self.req_next_note,
-            '<Control-k>': self.req_prev_note,
-            '<Control-n>': self.req_create_note,
-            '<Control-r>': self.req_refresh_list,
-            '<Control-s>': self.req_save,
-            '<Control-w>': self.req_close,
-            '<Alt-1>':     self.filter_entry.focus_set,
-            '<Alt-2>':     self.listbox.focus_set,
-            '<Alt-3>':     self.path_entry.focus_set,
-            '<Alt-4>':     self.editor.focus_set,
+            '<Control-d>':         self.req_delete_note,
+            '<Control-j>':         self.req_next_note,
+            '<Control-k>':         self.req_prev_note,
+            '<Control-l>':         self.req_next_subset,
+            '<Control-n>':         self.req_create_note,
+            '<Control-r>':         self.req_refresh_list,
+            '<Control-s>':         self.req_save,
+            '<Control-w>':         self.req_close,
+            '<Control-semicolon>': self.req_prev_subset,
+            '<Alt-1>':             self.filter_entry.focus_set,
+            '<Alt-2>':             self.listbox.focus_set,
+            '<Alt-3>':             self.path_entry.focus_set,
+            '<Alt-4>':             self.editor.focus_set,
             }
         for trigger in events:
             self._bind_all(trigger, events[trigger])
 
     def on_key(self, event):
         # This looks redundant, but Tkinter seems to have issues with
-        # "<Alt+digit>" keypresses on both Windows and Linux. If the
+        # "<Alt+number>" keypresses on both Windows and Linux. If the
         # above code doesn't work, the below code will.
                        
         alt_handlers = {'1': self.filter_entry.focus_set,
@@ -229,6 +231,12 @@ class AppWindow(ttk.PanedWindow):
 
     def req_prev_note(self, event=None):
         self.event_generate("<<PreviousNote>>")
+
+    def req_next_subset(self, event=None):
+        self.event_generate("<<NextSubset>>")
+
+    def req_prev_subset(self, event=None):
+        self.event_generate("<<PreviousSubset>>")
 
     def req_delete_note(self, event=None):
         self.event_generate("<<DeleteNote>>")
