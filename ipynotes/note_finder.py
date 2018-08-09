@@ -10,7 +10,7 @@ class NoteFinder():
     def __init__(self, settings):
         self._settings = settings
         self._note_path = settings.note_path()
-        self._set_path = os.path.join(settings.file_path(), "sets.ini")
+        self._subset_path = os.path.join(settings.file_path(), "subsets.ini")
         self._plugin_path = settings.filter_plugin_path()
         
     def split_terms(self, term_string):
@@ -36,24 +36,30 @@ class NoteFinder():
                         terms.append(word)
         return terms
 
-    def refresh_sets(self):
-        """Read sets.ini file; keep "=" lines; ignore other lines."""
+    def refresh_subsets(self):
+        """Read subsets.ini file; keep "=" lines; ignore other lines."""
         
-        self._sets = {}
-        try:
-            with open(self._set_path, encoding = 'utf-8') as f:
-                for line in f:
-                    line = re.sub(r'\s+', ' ', line.strip())
-                    name, value = line.split("=", 1)
-                    name = name.strip()
-                    value = value.strip()
-                    if name and value:
-                        if name not in self._sets:
-                            self._sets[name] = []
-                        terms = self.get_terms(value)
-                        self._sets[name].extend(terms)
-        except OSError:
-            pass
+        self._subsets = {}
+        self._subset_keys = []
+        if not os.path.exists(self._subset_path):
+            return
+        
+        text = get_file_text(self._subset_path)
+        lines = text.splitlines()
+        for line in lines:
+            line = re.sub(r'\s+', ' ', line.strip())
+            if "=" not in line:
+                continue
+            name, value = line.split("=", 1)
+            name = name.strip()
+            value = value.strip()
+            if name and value:
+                if name not in self._subsets:
+                    self._subsets[name] = []
+                terms = self.split_terms(value)
+                self._subsets[name].extend(terms)
+        
+        self._subset_keys = sorted(list(self._subsets.keys()))
         
     def parse_terms(self, term_list):
         """Convert a list of terms into a dict of more precise options."""
@@ -66,15 +72,15 @@ class NoteFinder():
         MAX_TERMS = 1000 # guard against list of terms growing too long
         
         search_file = False
-        resolve_set = False
+        resolve_subset = False
         run_plugin = False
 
-        self.refresh_sets()
+        self.refresh_subsets()
         
         for term in term_list:
             if term.endswith(':'):
-                if term.lower() in ['set:', 's:']:
-                    resolve_set = True
+                if term.lower() in ['subset:', 's:']:
+                    resolve_subset = True
                 elif term.lower() in ['text:', 't:']:
                     search_file = True
                 elif term.lower() in ['plugin:', 'p:']:
@@ -93,13 +99,13 @@ class NoteFinder():
                 file_terms.append(item)
                 search_file = False
     	        
-            elif resolve_set:
-                if term in self._sets:
-                    if len(terms) < MAX_TERMS:
-                        term_list.extend(self._sets[term])
+            elif resolve_subset:
+                if term in self._subsets:
+                    if len(term_list) < MAX_TERMS:
+                        term_list.extend(self._subsets[term])
                 else:
-                    bad_terms.append("set: " + term)
-                resolve_set = False
+                    bad_terms.append("subset: " + term)
+                resolve_subset = False
 
             elif run_plugin:
                 plugins.append(item)
@@ -192,3 +198,37 @@ class NoteFinder():
             matches = matches[:max_]
         return matches
         
+    def next_subset(self, name):
+        """Return the subset name that follows the name passed.
+        
+        If the name is the last subset name, return a blank string.
+        If the name is not a valid subset name, return the first subset name.
+        """
+        
+        self.refresh_subsets()
+        last = len(self._subset_keys) - 1
+        try:
+            index = self._subset_keys.index(name)
+        except ValueError:
+            index = -1
+        if index == last:
+            return ""
+        else:
+            return self._subset_keys[index + 1]
+
+    def prev_subset(self, name):
+        """Return the subset name that precedes the name passed.
+        
+        If the name is the first subset name, return a blank string.
+        If the name is not a valid subset name, return the last subset name.
+        """
+        self.refresh_subsets()
+        try:
+            index = self._subset_keys.index(name)
+        except ValueError:
+            index = len(self._subset_keys)
+        if index == 0:
+            return ""
+        else:
+            return self._subset_keys[index - 1]
+
