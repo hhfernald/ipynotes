@@ -39,9 +39,17 @@ You can access each of the four widgets with a keyboard shortcut:
 - Alt-3 moves the focus to the path bar.
 - Alt-4 moves the focus to the text editor.
 
+To create a new note, press Ctrl-N. The path bar will have the focus, so you can edit the path to the note. Press Enter, and the focus will shift to the editor.
+
 Moving among the notes in the listbox is easy. Ctrl-J displays the next note, and Ctrl-K displays the previous one.
 
 Notes are automatically saved, so you don't have to keep remembering to hit Ctrl-S every time you make a change to a note (though Ctrl-S will force a save immediately).
+
+There is no proper Search dialog yet, but you can use the filter bar. You can search the names of notes by entering `words` and `"phrases in double quotes"`. You can even search the contents of files by entering, e.g., `t:"the phrase you're looking for"`.
+
+Ctrl-D deletes the current note. (Note that there is no undo right now.)
+
+Ctrl-W closes the application.
 
 
 ## Dependencies
