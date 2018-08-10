@@ -43,7 +43,7 @@ class AboutWindow(ttk.Frame):
         return label
 
     def _padding(self):
-        return tk.Canvas(self, width=10, height=8)
+        return tk.Frame(self, width=10, height=8)
 
     def close(self, event=None):
         self.master.destroy()
