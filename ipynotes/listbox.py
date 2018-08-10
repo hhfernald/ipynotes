@@ -99,8 +99,6 @@ class Listbox(tk.Listbox):
 
         if not quiet:
             self.on_select()
-        # Pass current selected item to self.stripe_index().
-        # Get current selection color; stripe new item to that color.
 
     def select_next(self):
         """Moves selection down to the next item, if a next item exists."""
