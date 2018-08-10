@@ -11,7 +11,7 @@ NO_ITEM = -1
 class Listbox(tk.Listbox):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        self.config(activestyle = tk.NONE)
+        self.config(activestyle = tk.NONE, exportselection = False)
         self.colors = ['#f0f0ff', 'white']
         self._bind_events()
         self._selected = None
@@ -99,6 +99,8 @@ class Listbox(tk.Listbox):
 
         if not quiet:
             self.on_select()
+        # Pass current selected item to self.stripe_index().
+        # Get current selection color; stripe new item to that color.
 
     def select_next(self):
         """Moves selection down to the next item, if a next item exists."""
@@ -203,7 +205,7 @@ class Listbox(tk.Listbox):
 
     def delete_index(self, index):
         self.delete(index)
-
+    
     def stripe_index(self, index):
         color = self.colors[index % 2]
         self.itemconfigure(index, background = color)
