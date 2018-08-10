@@ -35,18 +35,6 @@ class PathEntry(Entry):
         # (But do permit slashes and backslashes, on both Windows and Linux.)
         if text in '|"*<>?:':
             return False
-
-        # Require each pair of path separators to be separated by at least
-        # one other character.
-        if text in '\\/':
-            prev_ = int(index) - 1
-            if prev_ >= 0 and prior_value[prev_] in '\\/':
-                return False
-
-            next_ = int(index) + 1
-            if next_ < len(prior_value) and prior_value[next_] in '\\/':
-                return False
-
         return True
 
     def on_enter(self, event=None):
