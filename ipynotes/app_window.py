@@ -5,6 +5,7 @@ import tkinter.ttk as ttk
 import os
 import platform
 
+from .about_window import AboutWindow
 from .editor import Editor
 from .filter_entry import FilterEntry
 from .listbox import Listbox, NO_ITEM
@@ -251,8 +252,6 @@ class AppWindow(ttk.PanedWindow):
         self.event_generate("<<CloseApplication>>")
 
     def about_this_app(self, event=None):
-        # Put up splashy dialog box???
-        self.status_bar.set_message("MENU: About IPyNotes... "
-                                    "(should have 'About' dialog here)")
-        pass
+        self.about_window = tk.Toplevel(self.master)
+        AboutWindow(self.about_window)
 
