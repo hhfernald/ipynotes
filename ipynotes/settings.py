@@ -3,6 +3,8 @@
 import os
 import configparser
 
+from .app_version import *
+
 # Obligatorily (on every OS):
 # - config files go in $HOME/.config/IPyNotes
 #
@@ -20,23 +22,22 @@ class Settings:
     NOTES = "notes"
     CHANGES = "changes"
     PLUGINS = "plugins"
-    APP_NAME = "IPyNotes"
     
     def __init__(self):
         home = os.path.expanduser("~")
-        path = os.path.join(home, ".config", self.APP_NAME)
+        path = os.path.join(home, ".config", APP_NAME)
         os.makedirs(path, exist_ok = True)
         
-        file = self.APP_NAME + ".conf"
+        file = APP_NAME + ".conf"
         self._config_path = os.path.join(path, file)
         self._config = configparser.ConfigParser()
 
-        root = os.path.join(home, self.APP_NAME)
+        root = os.path.join(home, APP_NAME)
         if TESTING_IPYNOTES:
-            root = os.path.join(home, "Projects", self.APP_NAME)
+            root = os.path.join(home, "Projects", APP_NAME)
             
         if not os.path.exists(self._config_path):
-            self._config[self.APP_NAME] = {'root': root,
+            self._config[APP_NAME] = {'root': root,
                                            'halo_width': 4}
             self.save()
 
@@ -44,7 +45,7 @@ class Settings:
         self._modified = False
 
         # Make sure the data folders exist.
-        self._root = self.get(self.APP_NAME, 'root', root)
+        self._root = self.get(APP_NAME, 'root', root)
         os.makedirs(self.file_path(), exist_ok = True)
         os.makedirs(self.note_path(), exist_ok = True)
         os.makedirs(self.change_path(), exist_ok = True)
