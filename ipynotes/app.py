@@ -145,12 +145,14 @@ class App(ttk.Frame):
 
     def next_subset(self, event=None):
         self.save_if_needed()
+        self.window.status_bar.set_note_count_refreshing()
         name = self.window.filter_entry.get()
         name = self.note_store.next_subset(name)
         self.window.filter_entry.set_text(name)
 
     def prev_subset(self, event=None):
         self.save_if_needed()
+        self.window.status_bar.set_note_count_refreshing()
         name = self.window.filter_entry.get()
         name = self.note_store.prev_subset(name)
         self.window.filter_entry.set_text(name)
