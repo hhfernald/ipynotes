@@ -24,6 +24,12 @@ The Settings class does not yet use configparser to load and save settings in a 
 
 
 
+### Filter bar enhancements
+
+- The vertical bar character ("|") should be an "OR" operator, which would let you show more notes at a time --- notes that match the filter on the left side OR the right side of the bar. So `cats | dogs` would match notes that contained "cats", notes that contained "dogs", and notes that contained both words.
+
+
+
 ### Plugins
 
 #### "Notemakers"
