@@ -1,6 +1,6 @@
 # IPyNotes
 
-*Current version: v0.1.1.*
+*Current version: v0.1.1. See the [changelog][].*
 
 **IPyNotes** is a note organizer that I'm building in my spare time. It's a GUI application written in Python using Tkinter, and it's been tested on Linux and Windows (but not on OS X).
 
@@ -64,3 +64,6 @@ Ctrl-W closes the application.
 
 I wrote this application for no one but myself, but maybe its source code will be useful to someone else. I'm releasing IPyNotes under the MIT License. If you find anything useful in the code I've written, feel free to fork this project and build your own application.
 
+
+
+[changelog]: https://github.com/hhfernald/ipynotes/blob/master/CHANGELOG.md
