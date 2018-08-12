@@ -14,10 +14,8 @@ from .app_version import *
 
 # TODO: Add a way to save settings, e.g., at program close.
 
-TESTING_IPYNOTES = True
 
-
-class Settings:
+class Settings(object):
     FILES = "files"
     NOTES = "notes"
     CHANGES = "changes"
@@ -32,13 +30,10 @@ class Settings:
         self._config_path = os.path.join(path, file)
         self._config = configparser.ConfigParser()
 
-        root = os.path.join(home, APP_NAME)
-        if TESTING_IPYNOTES:
-            root = os.path.join(home, "Projects", APP_NAME)
-            
+        root = os.path.join(home, APP_NAME)            
         if not os.path.exists(self._config_path):
             self._config[APP_NAME] = {'root': root,
-                                           'halo_width': 4}
+                                      'halo_width': 4}
             self.save()
 
         self._config.read(self._config_path)
