@@ -8,7 +8,7 @@ from .settings import Settings
 from .utils import get_file_text
 
 
-class ChangeLog():
+class ChangeLog(object):
     def __init__(self, settings):
         self._settings = settings
         self._max_log_size = 1024 * 1024 * 2
