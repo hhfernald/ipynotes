@@ -31,7 +31,7 @@ class App(ttk.Frame):
         self.refresh_list()
         self.poll_unsaved()
         self.focus = None
-
+        
     def debug(self, text):
         self.window.status_bar.set_message(text)
 
@@ -45,11 +45,11 @@ class App(ttk.Frame):
             '<FocusOut>':              self.focus_lost,
             '<FocusIn>':               self.focus_gained,
 
+            '<<FilterChanged>>':       self.filter_changed,
             '<<ItemSelected>>':        self.note_selected,
             '<<NewNameAccepted>>':     self.note_name_accepted,
             '<<RedoFailed>>':          self.redo_failed,
             '<<UndoFailed>>':          self.undo_failed,
-            '<<PollFilter>>':          self.poll_filter,
             '<<CreateNote>>':          self.create_note,
             '<<NextNote>>':            self.next_note,
             '<<PreviousNote>>':        self.prev_note,
@@ -191,29 +191,18 @@ class App(ttk.Frame):
     #### Filling and refilling the note list ###################################
 
     def refresh_list(self, event=None):
-        """Fill the note listbox for the first time."""
-
+        """Clear out and refill both the note cache and the note list."""
         self.window.status_bar.set_note_count_refreshing()
         self.note_store.refresh_name_cache()
+        self.filter_changed()
+
+    def filter_changed(self, event=None):
+        """Clear out and refill the note list."""
+        self.window.status_bar.set_note_count_refreshing()
         terms = self.window.filter_entry.get()
         names = self.note_store.get_matches(terms)
         self.window.listbox.refresh(names)
         self.show_note_count()
-        self.after(500, self.poll_filter)
-
-    def poll_filter(self, event=None):
-        """If filter text has changed, clear out and refill the note list."""
-
-        if self.window.filter_entry.changed():
-            terms = self.window.filter_entry.get()
-            names = self.note_store.get_matches(terms)
-            self.window.listbox.refresh(names)
-            self.window.filter_entry.mark_unchanged()
-            self.show_note_count()
-
-        # Keep the number reasonably large, so the user can type in two or
-        # three letters before the listbox is cleared and refilled.
-        self.after(1000, self.poll_filter)
 
     #### Checking for and saving changes #######################################
 
@@ -256,7 +245,7 @@ class App(ttk.Frame):
             index = self.window.listbox.find_item(old_name)
             if index != NO_ITEM:
                 self.window.listbox.rename_item(index, new_name)
-                #self.window.listbox.select_index(index, quiet=True)
+
         self.show_note_count()
 
     def save_if_renamed(self, force=False):
