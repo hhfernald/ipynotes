@@ -1,4 +1,4 @@
-### What guidelines did I follow in writing this?
+# What guidelines did I follow in writing IPyNotes?
 
 I've been keeping notes on various things for a long time. I have literally thousands of notes for various projects, and organizing and keeping track of them all has often been a pain. Over the years, I've tried many different applications and schemes for storing, retrieving, and editing notes. I've even tried a few times to write my own application, only to find I wasn't happy with the result for one reason or another.
 
