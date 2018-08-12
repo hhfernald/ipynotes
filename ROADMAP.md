@@ -36,6 +36,8 @@ The Settings class does not yet use configparser to load and save settings in a 
 
 - In addition, you could hit the `<Up>` or `<Down>` keys to cycle among the current set of subfolders. If you'd already entered "tasks/", "hearth" would be suggested, but hitting `<Down>` once would suggest "home"; hitting it again changes the suggestion to "hotel".
 
+- The `<PageUp>` and `<PageDown>` keys would suggest the first or the last subfolder in the current set, respectively. (`<Home>` and `<End>` would of course move the cursor to the left or right end of the path, respectively.)
+
 - You should also hit a key to bring up a panel that lets you find a path with a given string in it; pick one from the list to copy it into the filter bar.
 
 #### Automatic management of numbers in note names
