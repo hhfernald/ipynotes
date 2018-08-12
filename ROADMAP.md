@@ -88,6 +88,8 @@ A tool plugin would get a list of note paths and would do some miscellaneous wor
 
 If I implement sidebars, it makes sense to allow for plugins to add new sidebars to the sidebar pane. This would create a new class, inherited from tk.Frame, where you could place widgets to your heart's content. I haven't worked out the mechanism by which the sidebar could ask the app for information to work on (e.g., the current line in the current note text; the current note name or path; the current filter string; the current note list; etc.).
 
+One caveat: You're advised to *never* try using both `grid()` and `pack()` on the same Tkinter window. IPyNotes's main window uses `pack()`, so any panel plugins would also have to use `pack()`.
+
 
 
 ### Note History
