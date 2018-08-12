@@ -4,7 +4,7 @@ import re
 from .utils import get_file_text
 
 
-class NoteFinder():
+class NoteFinder(object):
     """A search engine for notes."""
     
     def __init__(self, settings):
