@@ -38,6 +38,10 @@ The Settings class does not yet use configparser to load and save settings in a 
 
 - You should also hit a key to bring up a panel that lets you find a path with a given string in it; pick one from the list to copy it into the filter bar.
 
+#### Automatic management of numbers in note names
+
+- Where the sequence of notes in a folder is important, IPyNotes should be able to add a numeric prefix to each note in the folder. When you want to move a note up or down within a folder, IPyNotes should alter the numeric prefixes in the note names automatically. The prefix format would probably be a letter or underscore followed by one or more digits, e.g., `novel/p1/c01/s01/_01 Hero realizes he's seeing the monster`.
+
 
 
 ### Side panels
@@ -50,6 +54,12 @@ Tkinter's dialog boxes don't quite work in the way you expect dialog boxes to. I
 - Image display
 - Scratchpad file editor
 - Subset definition file editor
+
+
+
+### Back-end enhancements
+
+I'll be looking for ways to speed up the refilling of the note-name cache --- maybe with a coroutine or thread that scans the subfolders of the "notes" folder for changes, so the NoteStore object knows which subfolders to re-read and which to skip.
 
 
 
