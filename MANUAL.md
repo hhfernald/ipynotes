@@ -172,7 +172,14 @@ Ctrl-Semicolon works in the same way, but it cycles backward.
 - Alt-3: Path Bar
 - Alt-4: Note Editor
 
-In the editor:
+In the note list:
+
+- Ctrl-Home: Select first note
+- Ctrl-End: Select last note
+- PageUp: Scroll up a page without selecting a different note
+- PageDown: Scroll down a page without selecting a different note
+
+In the note editor:
 
 - Ctrl-A: Select All  
   Selects all of the current note's text.
