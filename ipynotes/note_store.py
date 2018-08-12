@@ -12,7 +12,7 @@ from .time_me import time_me
 from .utils import get_file_text
 
 
-class NoteStore:
+class NoteStore(object):
     def __init__(self, settings):
         self._settings = settings
         self._finder = NoteFinder(settings)
