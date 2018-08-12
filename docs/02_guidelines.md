@@ -25,7 +25,7 @@ Before I wrote the program, though, I sat down and listed the criteria that I wa
      IPyNotes could have stored notes into a database, such as SQLite --- but then you'd need IPyNotes (or a SQLite file browser) to see your notes again.
 
 
-- **Keep each note is in its own file.**
+- **Keep each note in its own file.**
      If you have 10,000 notes, you have 10,000 text files. If each note is on average 1KB in size and you were to keep all notes in a single file, you'd have a 10MB text file --- which is large enough that some text editors, even today, suffer performance lags when you try to load and edit such a file.
 
   The advantages of the one-note-per-file model are:
