@@ -40,7 +40,7 @@ class AppWindow(ttk.PanedWindow):
             style.theme_use("clam")
 
     def _build_left_pane(self):
-        self.left_pane = ttk.Frame(self)
+        self.left_pane = ttk.Frame(self, takefocus=False)
         
         self.filter_entry = FilterEntry(self.left_pane)
         self.filter_entry.config(bg = "#ddddcc",
@@ -61,7 +61,7 @@ class AppWindow(ttk.PanedWindow):
         self.add(self.left_pane)
 
     def _build_right_pane(self):
-        self.right_pane = ttk.Frame(self)
+        self.right_pane = ttk.Frame(self, takefocus=False)
         
         self.path_entry = PathEntry(self.right_pane)
         self.path_entry.config(highlightthickness = self._halo_width)
