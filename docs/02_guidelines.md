@@ -7,11 +7,11 @@ IPyNotes is my latest attempt.
 Before I wrote the program, though, I sat down and listed the criteria that I wanted it to meet:
 
 
-- **The app should work on more than one operating system.**
+- **Make the app work on more than one operating system.**
      IPyNotes is written in Python using Tkinter, which runs on Windows, Linux, and other operating systems.
 
 
-- **The app should remain simple.**
+- **Keep the app simple.**
      Do not add features that aren't necessary. Stick with what the file system offers: directories and filenames.
 
      For example, IPyNotes does not create or maintain indexes for full-text searches of notes; it simply searches files directly. IPyNotes also does not offer tags *per se*; you put tags in notes' filenames.
