@@ -26,7 +26,7 @@ IPyNotes: Quick User's Manual
 
 
 
-### Using the path bar to rename the note
+### Using the name bar to rename the note
 
 Before moving the focus out of the name bar, you can roll back your changes by hitting Escape. Hitting Enter, or moving the focus out of the name bar, causes the note to be renamed to whatever is in the name bar. (Hitting Enter also moves the focus to the editor so you can start typing or editing.)
 
@@ -36,7 +36,7 @@ Before moving the focus out of the name bar, you can roll back your changes by h
 
 ### Creating a second note
 
-When a note is selected and you press Ctrl-N again, the new note will have the same name as the current note, except that a number is appended to the name. The path bar will be in focus, so you can edit the name to what you want.
+When a note is selected and you press Ctrl-N again, the new note will have the same name as the current note, except that a number is appended to the name. The name bar will be in focus, so you can edit the name to what you want.
 
 
 
@@ -77,7 +77,7 @@ Ctrl-Semicolon works in the same way, but it cycles backward.
 
 - Alt-1: Filter Bar
 - Alt-2: Note List
-- Alt-3: Path Bar
+- Alt-3: Name Bar
 - Alt-4: Note Editor
 
 In the note list:
