@@ -22,13 +22,13 @@ IPyNotes expects to find notes in `$YOUR_HOME_FOLDER/IPyNotes/notes` on your har
 
 Each note is a single plain-text file with an `.md` extension and encoded as UTF-8. Notes can be stored in the `notes` folder or in a subfolder; IPyNotes searches all subfolders for notes.
 
-The main window has two panes. The left pane contains the filter bar along the top; the listbox that displays note paths takes up the rest of the pane. The right pane has the path bar along the top, and the text editor, for editing the contents of the current note, fills the rest of the pane.
+The main window has two panes. The left pane contains the filter bar along the top; the listbox that displays note names takes up the rest of the pane. The right pane has the name bar along the top, and the text editor, for editing the contents of the current note, fills the rest of the pane.
 
-The main window shows the notes, not with a tree widget, but with a plain listbox, as a relative path to the note, without the `.md` extension. So `~/IPyNotes/notes/coding/my editor.md` would appear in the list as `coding/my editor` (or as `coding\my editor` on Windows).
+The main window shows the notes, not with a tree widget, but with a plain listbox. Each note name in the listbox consists of the relative path to the note, without the `.md` extension. So `~/IPyNotes/notes/coding/my editor.md` would appear in the list as `coding/my editor` (or as `coding\my editor` on Windows).
 
-You use the filter bar to limit the notes displayed in the listbox. If you type `food lost "any kind"` into the filter bar, then the listbox displays only notes whose relative paths include all three of the terms "food", "lost", and "any kind" (in any order). IPyNotes can also read filter strings from a file, so that you can cycle among them by pressing Ctrl-L instead of typing into the filter bar.
+You use the filter bar to limit the notes displayed in the listbox. If you type `food lost "any kind"` into the filter bar, then the listbox displays only notes whose names (relative paths) include all three of the terms "food", "lost", and "any kind" (in any order). IPyNotes can also read filter strings from a file, so that you can cycle among them by pressing Ctrl-L instead of typing into the filter bar.
 
-The path bar above the note editor is used to rename notes. Changing `my/first/note` to `another/name` renames `~/IPyNotes/notes/my/first/note.md` to `~/IPyNotes/notes/another/name.md`.
+The name bar above the note editor is used to rename notes. Changing `my/first/note` to `another/name` renames `~/IPyNotes/notes/my/first/note.md` to `~/IPyNotes/notes/another/name.md`.
 
 The note editor is a plain text widget, with no syntax highlighting yet.
 
