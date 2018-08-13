@@ -1,6 +1,6 @@
 # IPyNotes
 
-*Current version: v0.1.3. See the [changelog][].*
+*Current version: v0.1.3. See the [changelog][]. Also check out the [wiki][] for a list of planned features.*
 
 **IPyNotes** is a note organizer that I'm building in my spare time. It's a GUI application written in Python using Tkinter, and it's been tested on Linux and Windows (but not on OS X).
 
@@ -67,3 +67,4 @@ I wrote this application for no one but myself, but maybe its source code will b
 
 
 [changelog]: https://github.com/hhfernald/ipynotes/blob/master/CHANGELOG.md
+[wiki]: https://github.com/hhfernald/ipynotes/wiki
