@@ -9,7 +9,7 @@ from .about_window import AboutWindow
 from .editor import Editor
 from .filter_entry import FilterEntry
 from .listbox import Listbox, NO_ITEM
-from .path_entry import PathEntry
+from .name_entry import NameEntry
 from .status_bar import StatusBar
 from .scrollbar import VerticalScrollbar
 from .time_me import time_me
@@ -63,9 +63,9 @@ class AppWindow(ttk.PanedWindow):
     def _build_right_pane(self):
         self.right_pane = ttk.Frame(self, takefocus=False)
         
-        self.path_entry = PathEntry(self.right_pane)
-        self.path_entry.config(highlightthickness = self._halo_width)
-        self.path_entry.pack(side = tk.TOP, fill = tk.X)
+        self.name_entry = NameEntry(self.right_pane)
+        self.name_entry.config(highlightthickness = self._halo_width)
+        self.name_entry.pack(side = tk.TOP, fill = tk.X)
         
         self.editor_scrollbar = VerticalScrollbar(self.right_pane)
         self.editor_scrollbar.pack(side = tk.RIGHT, fill = tk.Y)
@@ -150,7 +150,7 @@ class AppWindow(ttk.PanedWindow):
                                  accelerator = "Alt+2")
         self.go_menu.add_command(label = "Note Path Editor",
                                  underline = 5,
-                                 command = self.path_entry.focus_set,
+                                 command = self.name_entry.focus_set,
                                  accelerator = "Alt+3")
         self.go_menu.add_command(label = "Note Text Editor",
                                  underline = 10,
@@ -190,7 +190,7 @@ class AppWindow(ttk.PanedWindow):
             '<Control-semicolon>': self.req_prev_subset,
             '<Alt-1>':             self.filter_entry.focus_set,
             '<Alt-2>':             self.listbox.focus_set,
-            '<Alt-3>':             self.path_entry.focus_set,
+            '<Alt-3>':             self.name_entry.focus_set,
             '<Alt-4>':             self.editor.focus_set,
             }
         for trigger in events:
@@ -203,7 +203,7 @@ class AppWindow(ttk.PanedWindow):
                        
         alt_handlers = {'1': self.filter_entry.focus_set,
                         '2': self.listbox.focus_set,
-                        '3': self.path_entry.focus_set,
+                        '3': self.name_entry.focus_set,
                         '4': self.editor.focus_set}
         if self._alt_pressed(event):
             if event.keysym in alt_handlers:
