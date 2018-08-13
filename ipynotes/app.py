@@ -7,7 +7,7 @@ from .app_window import AppWindow
 from .editor import Editor
 from .filter_entry import FilterEntry
 from .listbox import Listbox, NO_ITEM
-from .path_entry import PathEntry
+from .name_entry import NameEntry
 from .settings import Settings
 from .status_bar import StatusBar
 from .note_store import NoteStore
@@ -85,7 +85,7 @@ class App(ttk.Frame):
         self.save_if_renamed(True)
         self.save_if_changed()
 
-        self.window.path_entry.set_text(note_name, mark_unchanged=True)
+        self.window.name_entry.set_text(note_name, mark_unchanged=True)
         self.debug("App.note_selected(): Note name set as: ["
                    + note_name + "]")
         text = self.note_store.load_text(note_name)
@@ -124,7 +124,7 @@ class App(ttk.Frame):
         listbox = self.window.listbox
         index = listbox.find_item(old_name) + 1
         listbox.sort(new_name)
-        self.window.path_entry.focus_set()
+        self.window.name_entry.focus_set()
         self.show_note_count()
 
     def reselect_note(self):
@@ -207,7 +207,7 @@ class App(ttk.Frame):
     #### Checking for and saving changes #######################################
 
     def poll_unsaved(self, event=None):
-        if (self.window.path_entry.changed()
+        if (self.window.name_entry.changed()
             or self.window.editor.edit_modified()):
             self.event_generate("<<Unsaved>>")
         else:
@@ -218,7 +218,7 @@ class App(ttk.Frame):
         """Save (and possibly rename) the current note; mark it as unchanged."""
         
         text = self.window.editor.get_text()
-        req_name = self.window.path_entry.get()
+        req_name = self.window.name_entry.get()
         old_name = self.note_name
         if not req_name:
             req_name = old_name
@@ -226,7 +226,7 @@ class App(ttk.Frame):
         
         # If old_name == "", new_name should be added to list!
 
-        self.window.path_entry.set_text(new_name, mark_unchanged=True)
+        self.window.name_entry.set_text(new_name, mark_unchanged=True)
         self.debug("App.save_changes(): Note name set as: ["
                    + new_name + "]")
         self.window.editor.edit_modified(False)
@@ -256,8 +256,8 @@ class App(ttk.Frame):
         selected, or the window is being closed, pass force=True to run this
         function even if the path entry has focus."""
 
-        if force or self.focus is not self.window.path_entry:
-            req_name = self.window.path_entry.get()
+        if force or self.focus is not self.window.name_entry:
+            req_name = self.window.name_entry.get()
             if req_name != self.note_name:
                 self.save_changes()
                 
