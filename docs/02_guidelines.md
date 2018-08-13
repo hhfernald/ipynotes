@@ -36,10 +36,10 @@ Before I wrote the program, though, I sat down and listed the criteria that I wa
      Saving notes to a database would solve that problem, but of course you'd lose the advantage of plain text files.
 
   - *Each note automatically has its own ID and modification date.*
-     The relative path of the note is sufficient to find and load the note.
+     The name (relative path) of the note is sufficient to find and load the note.
 
   - *Small files occupy little memory.*
-     The application can load just the note being viewed or worked on, and all of the memory that is not being used to hold thousands of lines from a large text file can be used instead to keep a cache of the relative paths of all of the notes in your collection.
+     The application can load just the note being viewed or worked on, and all of the memory that is not being used to hold thousands of lines from a large text file can be used instead to keep a cache of the names (relative paths) of all of the notes in your collection.
 
   The drawbacks are:
 
@@ -47,9 +47,9 @@ Before I wrote the program, though, I sat down and listed the criteria that I wa
 
   - *File searches are slower.* It takes longer to search a thousand small files than to search a single huge file with the same content. As stated above, IPyNotes does not use full-text indexes to speed up file searches, but a couple of factors mitigate the speed issue:
 
-     The filter bar by default searches only note paths --- which are cached in memory.
+     The filter bar by default searches only note names --- which are cached in memory.
 
-     If you specify a search of the contents of notes (by adding `t:` before a term), the search is limited to the files that match the other terms in the filter bar. If the filter bar contains `dogs t:petting cats`, then IPyNotes will produce a subset of notes whose paths contain both the word "dogs" and the word "cats" and will search the contents of only those notes for the word "petting".
+     If you specify a search of the contents of notes (by adding `t:` before a term), the search is limited to the files that match the other terms in the filter bar. If the filter bar contains `dogs t:petting cats`, then IPyNotes will produce a subset of notes whose names contain both the word "dogs" and the word "cats" and will search the contents of only those notes for the word "petting".
 
      Even if you want to search *all* notes for a given phrase, the amount of time spent searching may not bother you. I did an informal test on my slightly underpowered $200 laptop (an HP Stream 11-r010nr from 2015, with a 1.60GHz Intel Celeron and 32GB of eMMC storage). Searching 20,000 small files took less than 2.5 seconds, while searching 100,000 took about 20 seconds. I currently have around 15,000 notes and doubt I will ever end up with 100,000. I imagine that most people will also not have huge numbers of notes.
 
@@ -59,7 +59,7 @@ Before I wrote the program, though, I sat down and listed the criteria that I wa
 
 
 - **Use a listbox, not a treeview.**
-     I've discovered that I don't like using treeviews very much. I really don't like having to click one triangle after another to see things. I wanted all my notes on one level --- in a listbox. Notes could still go into hierarchies and categories, but each note's entry would be a relative path to the note.
+     I've discovered that I don't like using treeviews very much. I really don't like having to click one triangle after another to see things. I wanted all my notes on one level --- in a listbox. Notes could still go into hierarchies and categories, but each note's name would be a relative path to the note.
 
 
 - **Filter the listbox in place.**
@@ -69,7 +69,7 @@ Before I wrote the program, though, I sat down and listed the criteria that I wa
 - **Note order and categories are still important.**
      Notes are presented in sorted order. You can add arbitrary numbers to filenames to enforce a certain order among notes.
 
-     Notes go into folders when their relative paths contain the path separator (either '/' or '\', on Linux or Windows). Moving a note to a different folder is as easy as renaming it.
+     Notes go into folders when their names contain the path separator (either '/' or '\', on Linux or Windows). Moving a note to a different folder is as easy as renaming it.
 
 
 - **Autosave is important.**
@@ -77,7 +77,7 @@ Before I wrote the program, though, I sat down and listed the criteria that I wa
 
 
 - **Make it easy to do everything with the keyboard.**
-     I wanted to be able to change the list filter, go to the next or previous note in the list, edit the note's path, and switch back to the text editor without having to reach for the mouse.
+     I wanted to be able to change the list filter, go to the next or previous note in the list, edit the note's name, and switch back to the text editor without having to reach for the mouse.
 
      I reserved certain keyboard shortcuts --- `Ctrl` plus the four home-row keys under the right hand, `j k l ;` --- for navigating among notes and among subsets of notes.
 
